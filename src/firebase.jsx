@@ -1,25 +1,30 @@
 // src/firebase.js
-
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  browserSessionPersistence,
+  setPersistence,
+} from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDij1fqbI0qlUD3VLDApTpNKeGDkmUavjU",
-  authDomain: "new-react-app-d72a4.firebaseapp.com",
-  projectId: "new-react-app-d72a4",
-  storageBucket: "new-react-app-d72a4.firebasestorage.app",
-  databaseURL: "https://new-react-app-d72a4-default-rtdb.firebaseio.com/",
-  messagingSenderId: "296196591790",
-  appId: "1:296196591790:web:ea354d96e7cdf7ef005d3f",
-  measurementId: "G-ZKMLQ897YJ"
+  apiKey: "AIzaSyCuyYiTmo1TIQPYfTS_CekoweXN6hRa3NY",
+  authDomain: "react-app-5aa9b.firebaseapp.com",
+  databaseURL: "https://react-app-5aa9b-default-rtdb.firebaseio.com",
+  projectId: "react-app-5aa9b",
+  storageBucket: "react-app-5aa9b.firebasestorage.app",
+  messagingSenderId: "62422622220",
+  appId: "1:62422622220:web:60d49d483dcf616a2b0e29",
+  measurementId: "G-TPYVLQ64VK"
 };
 
 // Initialize Firebase app
 const app = initializeApp(firebaseConfig);
 
-// ✅ Initialize Auth & Provider
+// 🔐 Set auth with session-only persistence
 const auth = getAuth(app);
+setPersistence(auth, browserSessionPersistence);
+
 const googleProvider = new GoogleAuthProvider();
 
-// ✅ Export all needed Firebase instances
 export { auth, googleProvider, app };
